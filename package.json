@@ -1,0 +1,23 @@
+{
+  "name": "dokijs",
+  "version": "1.0.0",
+  "description": "DokiJS is a Javascript documentation tool that generates API from comments of your javascript files, using a syntax similar to tools like Javadoc, Yuidoc and JsDoc.",
+  "main": "DokiJS.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node DokiJS.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Snewkis/DokiJS.git"
+  },
+  "author": "Snewkis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Snewkis/DokiJS/issues"
+  },
+  "homepage": "https://github.com/Snewkis/DokiJS#readme",
+  "dependencies": {
+    "comment-parser": "^0.5.1"
+  }
+}
