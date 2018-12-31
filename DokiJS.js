@@ -82,26 +82,47 @@ getDirectories(args.dir, (err, res) => {
 		/**
 		 * read content
 		 */
-		res.forEach((el, i) => {
-			fs.readFile(el, "utf8", (err, contents) => {
-				
-				/**
-				 * comment-parser
-				 * https://github.com/yavorskiy/comment-parser
-				 *
-				 * thanks to Sergiy Yavorsky, alias yavorskiy
-				 */
-				let parsed_content = commentParser(contents);
+		function readFileDone(callback) { 
+			res.forEach((el, i) => {
+	
+				fs.readFile(el, "utf8", (err, contents) => {
+					
+					/**
+					 * comment-parser
+					 * https://github.com/yavorskiy/comment-parser
+					 *
+					 * thanks to Sergiy Yavorsky, alias yavorskiy
+					 */
+					let parsed_content = commentParser(contents);
+	
+					let data = {
+						parse: parsed_content
+					}
+					
+					console.log(data);
+					
+					fileParsed.push(data);
+        	    	
+        	    	if (i == res.length-1) {
+						callback();
+        	    	}
 
-				let data = {
-					parse: parsed_content
-				}
-				
-				console.log(data);
-				
-				fileParsed.push(data);
-            	
+				});
 			});
-		});
+		}
+
+		/**
+		 * start reading
+		 */
+		readFileDone(parsed_done);
 	}
 });
+
+/**
+ * when the parsing is done
+ */
+function parsed_done() {
+
+	console.log(fileParsed);
+
+}
