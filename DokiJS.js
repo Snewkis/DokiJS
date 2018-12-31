@@ -21,12 +21,13 @@ const minimist=(n,t)=>{t||(t={});var o={bools:{},strings:{},unknownFn:null};"fun
 const fs = require("fs");
 const path = require('path');
 const glob = require("glob");
-const commentParser = require("comment-parser")
+const commentParser = require("comment-parser");
 
 /**
  * arguments enter by the user
  */
 let args = minimist(process.argv.slice(2));
+let fileParsed = [];
 
 /**
  * Default arguments
@@ -84,6 +85,7 @@ getDirectories(args.dir, (err, res) => {
 		res.forEach((el, i) => {
 			fs.readFile(el, "utf8", (err, contents) => {
 				
+
 				/**
 				 * comment-parser
 				 * https://github.com/yavorskiy/comment-parser
@@ -92,7 +94,14 @@ getDirectories(args.dir, (err, res) => {
 				 */
 				let parsed_content = commentParser(contents);
 
-	    		console.log(parsed_content);
+				let data = {
+					parse: parsed_content
+				}
+				
+				console.log(data);
+				
+				fileParsed.push(data);
+            	
 			});
 		});
 	}
