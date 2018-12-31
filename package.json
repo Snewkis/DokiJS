@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Snewkis/DokiJS#readme",
   "dependencies": {
-    "comment-parser": "^0.5.1"
+    "comment-parser": "^0.5.1",
+    "glob": "^7.1.3"
   }
 }
