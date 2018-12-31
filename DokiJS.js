@@ -90,26 +90,7 @@ getDirectories(args.dir, (err, res) => {
 				 *
 				 * thanks to Sergiy Yavorsky, alias yavorskiy
 				 */
-				let parsed_content = commentParser(contents, {parsers: [
-					// takes entire string
-					function parse_tag(str, data) {
-						return {source: ' @tag', data: {tag: 'tag'}};
-					},
-					// parser throwing exception
-					function check_tag(str, data) {
-						if (allowed_tags.indexOf(data.tag) === -1) {
-							throw new Error('Unrecognized tag "' + data.tag + '"');
-						}			
-					},
-					// takes the rest of the string after ' @tag''
-					function parse_name1(str, data) {
-						return {source: ' name', data: {name: 'name1'}};
-					},
-					// alternative name parser
-					function parse_name2(str, data) {
-						return {source: ' name', data: {name: 'name2'}};
-					}
-				]});
+				let parsed_content = commentParser(contents);
 
 	    		console.log(parsed_content);
 			});
